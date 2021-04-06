@@ -15,6 +15,7 @@ import java.time.Period;
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = {BookingMaximumStayValidatorConstraint.class})
 public @interface BookingMaximumStayValidator {
+    String message() default "Booking is valid only for 3 days, not more than 3 days";
 }
 
 class BookingMaximumStayValidatorConstraint implements ConstraintValidator<BookingMaximumStayValidator, BookingDetailDTO> {

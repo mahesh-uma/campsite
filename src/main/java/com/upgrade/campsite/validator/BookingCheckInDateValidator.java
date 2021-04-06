@@ -20,7 +20,6 @@ public @interface BookingCheckInDateValidator {
 }
 
 class BookingCheckInValidatorConstraint implements ConstraintValidator<BookingCheckInDateValidator, BookingDetailDTO> {
-
     @Override
     public boolean isValid(BookingDetailDTO booking, ConstraintValidatorContext constraintValidatorContext) {
         return LocalDate.now().isBefore(booking.getCheckIn())

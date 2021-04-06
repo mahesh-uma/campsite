@@ -7,9 +7,7 @@ import org.mapstruct.factory.Mappers;
 
 @Mapper
 public interface BookingDetailMapper {
-    public BookingDetailMapper INSTANCE = Mappers.getMapper(BookingDetailMapper.class);
+    BookingDetailMapper INSTANCE = Mappers.getMapper(BookingDetailMapper.class);
 
-   BookingDetailDTO toBookingDetailDTO(BookingDetail bookingDetail);
-
-   BookingDetail toBooking(BookingDetailDTO bookingDetailDTO);
+    BookingDetail toBooking(BookingDetailDTO bookingDetailDTO);
 }

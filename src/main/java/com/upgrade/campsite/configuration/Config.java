@@ -23,6 +23,7 @@ public class Config {
             reservedDates.addAll(localDateList);
         }
     }
+
     public static void removeReservedDates(List<LocalDate> localDateList) {
         synchronized (removeLocker) {
             reservedDates.removeAll(localDateList);

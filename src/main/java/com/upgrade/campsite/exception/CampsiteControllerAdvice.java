@@ -23,12 +23,6 @@ public class CampsiteControllerAdvice {
         return new ResponseEntity<>(new Error("NOT AVAILABLE",e.getMessage(), HttpStatus.NOT_FOUND.value(),LocalDate.now()), HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(Exception.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ResponseEntity<Error> general(Exception e) {
-        return new ResponseEntity<>(new Error("NOT AVAILABLE",e.getMessage(), HttpStatus.BAD_REQUEST.value(),LocalDate.now()), HttpStatus.BAD_REQUEST);
-    }
-
     private static final class Error {
         private final String error;
         private final String message;

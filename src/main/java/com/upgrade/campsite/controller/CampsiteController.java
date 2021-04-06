@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
@@ -28,7 +30,7 @@ public class CampsiteController {
     }
 
     @PostMapping("/reserve")
-    public ResponseEntity<BookingDetail> reserve(@RequestBody BookingDetailDTO bookingDetailDTO) {
+    public ResponseEntity<BookingDetail> reserve(@RequestBody @Valid BookingDetailDTO bookingDetailDTO) {
         BookingDetail bd = BookingDetailMapper.INSTANCE.toBooking(bookingDetailDTO);
         return new ResponseEntity<>(campsiteService.reserve(bd)
                 , HttpStatus.CREATED);
@@ -36,13 +38,13 @@ public class CampsiteController {
 
 
     @PutMapping("/update/{uuid}")
-    public ResponseEntity<BookingDetail> updateCampsite(@PathVariable UUID uuid, @RequestBody BookingDetailDTO bookingDetailDTO) {
+    public ResponseEntity<BookingDetail> updateCampsite(@PathVariable @NotNull UUID uuid, @RequestBody @Valid BookingDetailDTO bookingDetailDTO) {
         BookingDetail bd = BookingDetailMapper.INSTANCE.toBooking(bookingDetailDTO);
         return new ResponseEntity<>(campsiteService.update(uuid,bd), HttpStatus.OK);
     }
 
     @DeleteMapping("/{uuid}")
-    public ResponseEntity<Void> cancel(@PathVariable UUID uuid) {
+    public ResponseEntity<Void> cancel(@PathVariable @NotNull UUID uuid) {
         boolean cancelled = campsiteService.cancel(uuid);
         if (cancelled) {
             return new ResponseEntity<>(HttpStatus.OK);
