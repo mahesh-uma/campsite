@@ -20,3 +20,12 @@ Spring boot, java, in memory database
 * There are no restrictions on how reservations are stored as long as system constraints are not violated.
 
 # API Docs localhost:8080/swagger-ui.html
+
+# Due to the popularity of the campsite, there is a high likelihood of multiple users attempting to reserve the campsite for the same/overlapping date(s).
+* Complexity in this task achieve booking ticket without overlapping and this can be achieved in different ways 
+  * thread pool/MQ 
+  * pessimistic locking
+  * inmemory cache(collection) I used this approach
+* To avoid reserving the campsite for the same/overlapping date, inmemory List is used when ever we try to book a site date, that date is saved in that list and this is list is synchronized.
+
+
